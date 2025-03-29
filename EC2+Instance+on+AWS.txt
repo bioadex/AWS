@@ -1,0 +1,10 @@
+How to create EC2 intance 
+
+After login to your aws account 
+
+search for EC2 in the search button 
+
+click on EC2 
+
+use fier tier Ubuntu or other server 
+

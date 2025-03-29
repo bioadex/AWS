@@ -1,0 +1,31 @@
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+firstly check if you have aws on your ubuntu 
+
+aws --version    # to check version of aws if installed 
+
+if not 
+
+sudo snap install aws-cli --classic
+
+after 
+
+aws --version    # display the version 
+
+aws configure 
+
+ENTER THE FOLLOWING INFO. 
+ACCESS KEY                  # you can get this information click on IAM then click on the User of AWS account 
+SECRET KEY                  # you can get this also from IAM 
+REGION                      # this is region you have your aws account open 
+DEFAULT : JSON 
+
+aws help 
+
+aws iam list-users     # lists all iam user on your aws 
+
+
+Finished 
+
+with this you can access your aws via console 
+

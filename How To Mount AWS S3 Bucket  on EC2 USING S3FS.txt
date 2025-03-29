@@ -1,0 +1,65 @@
+1. Create an EC2 server. 
+
+2. Create an IAM user with Programattic access, add user data to install awscli and s3fs utilities.
+alternative method:  manually install awscli 
+
+ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+ sudo apt update && sudo apt install unzip -y
+ unzip awscliv2.zip
+ sudo ./aws/install
+ aws --version     # to see the version awscli must be running version 2 
+
+
+3. Create an IAM policy
+
+4. Attach the policy to the user created in step 2
+
+5. login to the server via ssh terminal      or alternative log in to your instance clicking connect 
+
+Go to your home directory and create a new directory with some files in it
+e.g mkdir /home/ubuntu/bucket; cd /home/aka-tech/bucket ;touch test1.txt test2.txt test3.txt
+
+6. Go to your AWS management console then S3 and create a new bucket
+e.g homeserver-testing
+
+7. Go to your ssh session and configure the AWS CLI credentials using the below command
+AWS configure (Enter the credentials that were created when we created the user in step 2) ACCESS KEY, SECRET KEY AND REGION (us-east-1)
+ aws configure 
+ aws s3 ls 
+ aws ec2 describe-instances      # details about instances running 
+
+8. Sync the target directory to the S3 bucket using the below CLI command:
+aws s3 sync path_on_filesystem s3://bucketname
+e.g aws s3 sync /home/ubuntu/bucket s3://homeserver-***** 
+
+9. create the credential file for s3fs
+s3fs supports the standard AWS credentials file stored in ${HOME}/.aws/credentials. Alternatively, s3fs supports a custom passwd file.
+The default location for the s3fs password file can be created:
+using a .passwd-s3fs file in the users home directory (i.e. ${HOME}/.passwd-s3fs) or /home/aka-tech/bucket
+echo AKIA2HVQ5KYRXRO5G******:GR0Dj6WpDjU6HxpPifhb8rHiCITrQS4R***** > $/home/path/.passwd_s3fs
+chmod 600 /home/aka-tech/bucket./passwd-s3fs
+
+file should have the below content:      cat ./passwd-s3fs
+$AWS_ACCESS_KEY_ID:$AWS_SECRET_KEY_ID 
+
+10. Run the below command to mount s3 as a filesystem on your ec2 server
+sudo s3fs bucketname path(name of your s3 on aws)  -o passwd_file=$HOME/.passwd-s3fs,nonempty,rw,allow_other,mp_umask=002,uid=$UID,gid=$UID -o url=http://s3.aws-region.amazonaws.com,endpoint=aws-region1,use_path_request_style
+
+for example:
+sudo s3fs homeserver-*****  -o passwd_file=$HOME/.passwd-s3fs,nonempty,rw,allow_other,mp_umask=002,uid=1000,gid=1000 -o url=http://s3.ca-central-1.amazonaws.com,endpoint=ca-central-1,use_path_request_style
+
+11. verify using the below command
+mount|grep s3fs
+
+12. Add the entry in fstab using the below command so that the changes become persistent after the server reboot as well:
+cd etc/
+pwd
+sudo cp fstab fstab_bkp
+sudo nano fstab
+
+bucketname directoryonfs fuse.s3fs _netdev,allow_other 0 0
+For example:
+homeserver-testing /home/ubuntu/bucket fuse.s3fs _netdev,allow_other 0 0
+
+
+https://www.youtube.com/watch?v=Qd85rhuFvqs      # you can watch this youtube for better understanding 

@@ -1,0 +1,83 @@
+Follow the following steps to create ec2 instance with terraform 
+
+sudo apt update 
+
+sudo apt upgrade
+
+sudo mkdir terraform
+
+cd terraform 
+
+sudo touch terraform.tf 
+
+sudo nano terraform.tf 
+
+copy this into it 
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "us-east-***"      # location where you want your instance 
+  access_key = "AKIA2HVQ5KYRXRO5***"   # copy your access_key
+  secret_key = "GR0Dj6WpDjU6HxpPifhb8rHiCITrQS4******"   # copy your secret_key
+}
+
+resource "aws_vpc" "vpc-0ea6d973007b56****" {           # copy your aws_vpc 
+  cidr_block = "10.0.0.0/16"
+}
+
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+resource "aws_instance" "web" {              # First ec2 instance
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "ec2_via_terraform"              # name of your ec2 instance 
+  }
+}
+
+resource "aws_instance" "web2" {            # Second ec2 instance 
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "ec2_via_terraform_2"            # name of your ec2 instance 
+  }
+}
+
+
+after save it CTRL+O ENTER CTRL+X 
+
+terraform init
+
+terraform plan        # this will show you what will be create 
+
+terraform apply       # this will create the ec2 instance 
+
+after this you can now view the created ec2 instance on the aws ec2 instance dashboard 
+
+terraform destory     # this will destory the ec2 instance created 
+

@@ -1,0 +1,106 @@
+Create AWS Account 
+
+you can start creating free tier aws account with this you can explore more than 100 service of aws for 12 month free
+www.aws.amazon.com/free
+
+Click on Create a free Account go ahead a enter your (email) Root user 
+Enter AWS ACCOUNT NAME : aka-tech-it
+
+Click verify email 
+
+Check your email to verify 
+
+ENETR VERIFICATION CODE SEND TO YOU. 
+
+CREATE A PASSWORD
+
+ENTER the information ASK 
+
+ENTER your BILLING INFORMATION   # You need a credit card that can be charge later after 12 months free use.
+
+CONFIRM YOUR IDENITITY 
+
+FOLLOW THE INSTRUCTION ON THE SCREEN SHOWN TO YOU 
+
+VERIFY YOUR PHONE NUMBER 
+
+SELECT YOUR SUPPORT PLAN 
+
+"BASIC PLAN"
+
+FINISHED!!!
+
+YOU ARE NOW SIGN IN INTO AWS ACCOUNT BY GOING TO AWS MANANGEMENT CONSOLE 
+
+AFTER TAKING YOU TO THE AWS MANANGEMENT CONSOLE 
+
+CLICK ON SIGN IN USING ROOT USER EMAIL 
+
+ENTER YOUR LOGIN DETAILS 
+
+AFTER SIGNING YOU WILL SEE THE AWS CONSOLE 
+
+THIS IS OPITIONAL BUT FOR BETTER PERFORMANCE GET OFF THE ROOT USER ACCOUNT BY CREATING IAM ACCOUNT 
+
+IAM STAND IDENITITY ACCESS MANANGEMENT
+
+CLICK ON SEARCH TYPE IAM 
+
+CLICK ON IAM THEN YOU WILL SEE ADD MFA for root user click on that then click on assign MFA 
+
+enter device name "choose any name"
+
+CHOOSE AUTHENTICATOR APP for me i perfer google authenthicator app you can download it on google store or download microscoft authenthicator
+
+Follow the step to add your device to the authenthicator
+PASTE 1ST CODE 
+PASTE 2ND CODE 
+
+ADDING MFA this is giving you a extra layout. 
+GO back to the Dashboard then click on refresh 
+
+Click on add user to create an administrative user. this is the user you will be using instead of root user 
+
+Follow the instruction on enter user name 
+click on Provide user access to the AWS Management Console 
+
+Custom password
+
+Click next and set permission but this is optional Click on Policies directly. 
+
+if you are opening the account for others then set permission and click sign on the box so that the user can create new password when sign in for the first time.
+
+Click Next then Create User. 
+
+Copy: https://996711!!!!!.signin.aws.amazon.com/console 
+!!!! This will be your URL to sign in to aws management console !!!
+
+@@@@@@@@ BILLING ALERT !!!!!!!!!!!
+
+search for aws billing alarm 
+
+TO CREATE A BILLING ALERT    # this will help you to get alert incase you forget delete instance 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
