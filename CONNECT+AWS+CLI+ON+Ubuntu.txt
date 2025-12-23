@@ -6,11 +6,19 @@ aws --version    # to check version of aws if installed
 
 if not 
 
-sudo snap install aws-cli --classic
+sudo snap install aws-cli --classic or 
 
-after 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip    # to download it 
 
-aws --version    # display the version 
+unzip awscliv2.zip
+
+sudo ./aws/install       # this will install aws cli 
+
+after install you can confirm if its installed with 
+
+aws --version    # display the version
+
+aws-cli/2.x.x Python/3.x Linux/x86_64    # you see something like this 
 
 aws configure 
 
@@ -28,4 +36,5 @@ aws iam list-users     # lists all iam user on your aws
 Finished 
 
 with this you can access your aws via console 
+
 
