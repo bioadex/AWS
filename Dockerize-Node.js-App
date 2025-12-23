@@ -1,0 +1,62 @@
+There are two ways to do this first Dockerize this app without adding DATABASE this work fine for testing 
+the other way is by adding DB to the app this work for Development and Production 
+
+Using Method 1 
+Dockerize Node.js App without DB for Testing Purpose.  # for Development and Production need to have Postgres container running 
+
+Step 1:
+Create Dockerfile (no extension)
+
+touch Dockerfile 
+nano Dockerfile
+copy and paste this inside 
+
+# 1. Use official Node.js image
+FROM node:20-alpine
+
+# 2. Create app directory
+WORKDIR /app
+
+# 3. Copy package files first (for caching)
+COPY package*.json ./
+
+# 4. Install dependencies
+RUN npm install --production
+
+# 5. Copy application code
+COPY . .
+
+# 6. Expose app port
+EXPOSE 3000
+
+# 7. Start the app
+CMD ["node", "index.js"]
+
+Save : Ctrl o and Ctrl x
+
+Step 2: 
+Build Docker Image 
+
+from your project root
+
+cd/node-task-api 
+
+docker build -t devops-tasks-api .
+
+verify images exists 
+
+docker images 
+
+Step 3: 
+docker run -p 3000:3000 devops-tasks-api
+
+docker logs tasks-api    # check it there is any error if non then your container is running 
+
+Step 4: 
+Test with curl(Dockerized App)
+
+curl -X POST http://localhost:3000/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Node.js App Dockerized", "done": false}'
+
+If you see that in the URL that means your Dockerized App is working 
