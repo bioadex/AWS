@@ -1,0 +1,39 @@
+Step 1 :  create a project folder 
+mkdir node-task-api 
+cd node-task-api 
+
+Step 2: initialize Node.js 
+npm init -y   # this will create package.json 
+
+Step 3: Install Dependencies 
+npm install express cors 
+
+Step 4: Create the APP file 
+touch index.js
+
+nano index.js and copy the file into it 
+
+before you save you can change the port number if port 3000 is not available 
+
+Ctrl o enter Ctrl x to save and exit 
+
+Step 5:  Test it Locally first
+
+node index.js  # Start the server 
+
+Step 6: 
+access node-task-api via http://<ubuntu_ip>:3000/tasks 
+
+Step 7:  Quick API test with curl 
+
+curl -X POST http://localhost:3000/tasks \
+-H "Content-Type: application/json" \
+-d '{"title": "Node API testing", "done": false}'
+
+Once this works locally then we can now Dockerize the Node.js Express API 
+
+
+
+
+
+
