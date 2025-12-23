@@ -1,0 +1,78 @@
+Here is the Scheme of our Project here 
+
+Docker Image
+   ↓
+ECR (store image)
+   ↓
+ECS (run image)
+
+Remember Here that our Node.js did not have DB will be pushing that way for Testing Purpose 
+
+Step 1: 
+Verify AWS CLI is installed 
+
+aws --version 
+
+if installed then we continue if aws is not installed look at my Repository and follow the step 
+
+if installed continue to Step 2 
+
+Step 2: 
+
+Verify aws sts 
+
+aws sts get-caller-identity 
+
+Step 3:
+Create ECR Repository 
+
+aws ecr create-repository \
+  --repository-name devops-tasks-api \
+  --region us-east-1
+
+Output should look like this:
+
+{
+  "repository": {
+    "repositoryUri": "123456789012.dkr.ecr.us-east-1.amazonaws.com/devops-tasks-api"
+  }
+}
+
+
+Note:  Save the URL because you will need it later
+
+Step 4: 
+Login Docker to ECR 
+
+aws ecr get-login-password --region us-east-1 \
+| docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com    
+
+Expected Result:
+
+Login Succeeded
+
+
+Step 5:
+Tag Your Docker Image 
+
+docker images     # to be sure there is ur images 
+
+then Tag it for ECR:
+
+docker tag devops-tasks-api:latest \
+123456789012.dkr.ecr.us-east-1.amazonaws.com/devops-tasks-api:latest             
+
+Step 6:
+Push Images to ECR 
+
+docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/devops-tasks-api:latest
+
+then go to your AWS account then search for ECR then under it you should see Images in the AWS 
+
+Next Step to Push it to ECS 
+
+
+
+
+
+
