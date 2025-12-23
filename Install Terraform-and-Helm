@@ -1,0 +1,38 @@
+i will be install terraform from the HashiCorp official method 
+
+Firstly Add the HashiCorp GPG Key 
+
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+Secondly Add HashiCorp repository 
+
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+Step 3
+
+Install terraform 
+
+sudo apt update && sudo apt install terraform -y
+
+Step 4 Verify 
+
+terraform version 
+
+Terraform v1.x.x
+
+After Terraform Installed 
+
+You need to install Helm (Kubernetes Package Manager)
+
+Step 1: Download Helm install script 
+
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+Step 2: Verify 
+
+helm version 
+
+Expected Result 
+
+version.BuildInfo{Version:"v3.x.x"}
+
