@@ -1,0 +1,19 @@
+Download Kubectl 
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+make it executable 
+
+chmod +x kubectl
+
+Move to PATH 
+
+sudo mv kubectl /usr/local/bin/
+
+Verify if your installation is complete 
+
+kubectl version --client 
+
+Expected output: 
+
+Client Version: v1.xx.x
